@@ -21,7 +21,7 @@ wheels/
 *.egg
 MANIFEST
 venv/
-.env
+
 .env.local
 .env.*.local
 
