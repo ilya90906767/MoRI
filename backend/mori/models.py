@@ -29,6 +29,7 @@ class MRIScan(models.Model):
     morphometry_complete = models.BooleanField(default=False)
     morphometry_file_path = models.CharField(max_length=500, null=True, blank=True)
     morphometry_results = JSONField(null=True, blank=True)
+    morphometry_status = models.CharField(max_length=100, default="None")
     
     def __str__(self):
         return f"{self.organ} scan - {self.original_file_name} ({self.scan_date})"

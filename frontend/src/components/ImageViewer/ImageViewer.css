@@ -114,10 +114,11 @@
 }
 
 .futuristic-button:disabled {
-  background: linear-gradient(135deg, #686868, #9e9e9e);
-  box-shadow: none;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  background: linear-gradient(135deg, #4a4a5a, #2a2a3a);
+  box-shadow: none;
 }
 
 .canvas-container {
@@ -146,16 +147,71 @@ canvas {
   font-style: italic;
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderPulse {
+  0% {
+    border-color: rgba(32, 189, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(32, 189, 255, 0.3);
+  }
+  100% {
+    border-color: rgba(32, 189, 255, 0.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(32, 189, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(32, 189, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(32, 189, 255, 0.1);
+  }
+}
+
 .morphometry-section {
   margin-top: 1.5rem;
-  border-radius: 10px;
-  background: rgba(26, 26, 45, 0.8);
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  background: rgba(12, 12, 30, 0.9);
+  padding: 1.2rem;
+  border: 1px solid rgba(32, 189, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: none;
+}
+
+.morphometry-section::before, 
+.morphometry-section::after {
+  display: none;
 }
 
 .morphometry-data {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .morphometry-header {
@@ -164,55 +220,57 @@ canvas {
   align-items: center;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(110, 13, 208, 0.3);
+  border-bottom: 1px solid rgba(32, 189, 255, 0.2);
 }
 
 .morphometry-header h4 {
   font-size: 1.2rem;
   margin: 0;
-  background: linear-gradient(45deg, var(--accent-color), #20bdff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #20bdff;
+  font-weight: 600;
 }
 
 .morphometry-status {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
   margin: 0.5rem 0;
 }
 
 .morphometry-status.success {
-  background: rgba(0, 128, 0, 0.2);
-  border: 1px solid rgba(0, 128, 0, 0.3);
-  color: #4cff4c;
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid rgba(0, 200, 83, 0.2);
+  color: #4cff9b;
 }
 
 .morphometry-status.loading {
-  background: rgba(0, 0, 128, 0.2);
-  border: 1px solid rgba(0, 0, 128, 0.3);
-  color: #b3b3ff;
+  background: rgba(32, 189, 255, 0.1);
+  border: 1px solid rgba(32, 189, 255, 0.2);
+  color: #20bdff;
   flex-direction: column;
   text-align: center;
   padding: 1.5rem;
+  box-shadow: 0 0 15px rgba(32, 189, 255, 0.1);
 }
 
 .morphometry-status.loading .loading-spinner {
   width: 30px;
   height: 30px;
-  border-width: 4px;
+  border-width: 2px;
   margin-bottom: 1rem;
+  box-shadow: 0 0 15px rgba(32, 189, 255, 0.2);
 }
 
 .morphometry-status.error {
-  background: rgba(128, 0, 0, 0.2);
-  border: 1px solid rgba(128, 0, 0, 0.3);
-  color: #ffb3b3;
+  background: rgba(255, 76, 76, 0.1);
+  border: 1px solid rgba(255, 76, 76, 0.2);
+  color: #ff4c4c;
   flex-direction: column;
   text-align: center;
   padding: 1.5rem;
+  box-shadow: 0 0 15px rgba(255, 76, 76, 0.1);
 }
 
 .morphometry-status.error .status-icon {
@@ -226,24 +284,27 @@ canvas {
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba(26, 26, 45, 0.5);
-  border-radius: 8px;
+  background: rgba(15, 15, 35, 0.5);
+  border-radius: 12px;
   text-align: center;
+  border: 1px solid rgba(32, 189, 255, 0.1);
 }
 
 .status-message {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
 }
 
 .status-note {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   font-style: italic;
-  margin-top: 0.5rem;
-  max-width: 80%;
-  line-height: 1.4;
+  margin-top: 0.75rem;
+  max-width: 90%;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
 }
 
 .analyze-button.analyze-morphometry {
@@ -271,20 +332,22 @@ canvas {
 }
 
 .status-icon {
-  margin-right: 0.5rem;
-  font-size: 1rem;
+  margin-right: 0.6rem;
+  font-size: 1.1rem;
+  vertical-align: middle;
 }
 
 .loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(32, 189, 255, 0.1);
   border-radius: 50%;
-  border-top-color: #b3b3ff;
-  animation: spin 1s linear infinite;
+  border-top-color: #20bdff;
+  animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
   margin-right: 0.75rem;
   display: inline-block;
   vertical-align: middle;
+  box-shadow: 0 0 10px rgba(32, 189, 255, 0.2);
 }
 
 @keyframes spin {
@@ -294,64 +357,131 @@ canvas {
 }
 
 .retry-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  color: white;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(32, 189, 255, 0.3);
+  border-radius: 20px;
+  color: #20bdff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.retry-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(32, 189, 255, 0.2), transparent);
+  transition: 0.5s;
 }
 
 .retry-button:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  background: rgba(32, 189, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(32, 189, 255, 0.2);
+}
+
+.retry-button:hover::before {
+  left: 100%;
 }
 
 .morphometry-category {
   margin-bottom: 1.5rem;
+  position: relative;
+  animation: none;
 }
 
 .morphometry-category h5 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin: 0.5rem 0;
   color: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.3rem;
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+}
+
+.morphometry-category h5::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 1px;
+  background: rgba(110, 13, 208, 0.5);
 }
 
 .morphometry-table {
   overflow-x: auto;
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: auto;
   margin-top: 0.5rem;
+  border-radius: 6px;
+  background: rgba(15, 15, 35, 0.3);
+  padding: 0.3rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(32, 189, 255, 0.3) transparent;
+}
+
+.morphometry-table::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.morphometry-table::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.morphometry-table::-webkit-scrollbar-thumb {
+  background: rgba(32, 189, 255, 0.3);
+  border-radius: 4px;
 }
 
 .morphometry-table table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
-.morphometry-table th,
 .morphometry-table td {
-  padding: 0.5rem;
+  padding: 0.4rem 0.6rem;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.morphometry-table th {
-  background: rgba(110, 13, 208, 0.2);
-  color: rgba(255, 255, 255, 0.9);
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.morphometry-table tr {
+  transition: none;
+}
+
+.morphometry-table tr:nth-child(odd) td {
+  background: rgba(20, 20, 40, 0.3);
 }
 
 .morphometry-table tr:hover td {
   background: rgba(32, 189, 255, 0.1);
+  transform: none;
+}
+
+.morphometry-table td:first-child {
+  width: 70%;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.morphometry-table td:last-child {
+  width: 30%;
+  color: #20bdff;
+  font-weight: 500;
+  text-align: right;
 }
 
 .morphometry-actions {
@@ -364,31 +494,28 @@ canvas {
   background: linear-gradient(135deg, #6e0dd0, #20bdff);
   color: white;
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 6px;
+  padding: 0.8rem 1.6rem;
+  border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(110, 13, 208, 0.4);
+  box-shadow: 0 3px 8px rgba(110, 13, 208, 0.3);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  animation: none;
 }
 
 .futuristic-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 20px rgba(110, 13, 208, 0.6);
-}
-
-.futuristic-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(110, 13, 208, 0.4);
 }
 
 .button-icon {
-  margin-right: 0.5rem;
-  font-size: 1.2rem;
+  margin-right: 0.6rem;
+  font-size: 1.1rem;
 }
 
 @media screen and (max-width: 768px) {

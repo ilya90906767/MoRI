@@ -106,21 +106,33 @@ const Landing = () => {
         </div>
       </div>
 
+      {/* Features Section */}
       <div className="landing-features">
-        <div className="feature-card">
-          <div className="feature-icon brain-icon"></div>
-          <h3>Advanced Visualization</h3>
-          <p>Interactive 3D visualization of MRI scans with precise slice navigation and analysis tools.</p>
-        </div>
-        <div className="feature-card">
-          <div className="feature-icon ai-icon"></div>
-          <h3>AI-Powered Analysis</h3>
-          <p>Leverage machine learning models trained on thousands of brain scans to identify patterns and abnormalities.</p>
-        </div>
-        <div className="feature-card">
-          <div className="feature-icon data-icon"></div>
-          <h3>Detailed Morphometry</h3>
-          <p>Extract quantitative measurements of brain structures for comprehensive morphometric analysis.</p>
+        <h2 className="section-title">Key Features</h2>
+        <div className="features-grid">
+          <div className="feature-card">
+            <div className="feature-icon">🧠</div>
+            <h3>AI-Powered MRI Analysis</h3>
+            <p>Get detailed insights about brain structure and morphometry automatically with our advanced AI models.</p>
+          </div>
+          
+          <div className="feature-card">
+            <div className="feature-icon">📊</div>
+            <h3>Brain Morphometry Data</h3>
+            <p>Access comprehensive quantitative data about brain regions, volumes, and structural measurements.</p>
+          </div>
+          
+          <div className="feature-card">
+            <div className="feature-icon">💬</div>
+            <h3>Ask the AI</h3>
+            <p>Have questions about the analysis? Ask our AI assistant to explain findings and provide context.</p>
+          </div>
+          
+          <div className="feature-card highlight">
+            <div className="feature-icon">⚖️</div>
+            <h3>Compare MRI Scans</h3>
+            <p>Track changes between different scans over time with our new comparison tool. Easily identify differences in brain morphometry.</p>
+          </div>
         </div>
       </div>
 

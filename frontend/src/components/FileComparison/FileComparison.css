@@ -1,0 +1,353 @@
+.file-comparison-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #fff;
+}
+
+/* Setup screen styles */
+.comparison-setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  background: rgba(12, 12, 30, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(32, 189, 255, 0.1);
+}
+
+.comparison-setup h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #20bdff;
+}
+
+.comparison-setup p {
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+.file-selection {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 2.5rem;
+  gap: 3rem;
+}
+
+.file-slot {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(15, 15, 35, 0.5);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 450px;
+}
+
+.file-slot h3 {
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.select-file-btn {
+  background: linear-gradient(135deg, #6e0dd0, #20bdff);
+  color: white;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.select-file-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(32, 189, 255, 0.3);
+}
+
+.compare-button {
+  background: linear-gradient(135deg, #6e0dd0, #20bdff);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1.5rem;
+}
+
+.compare-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #444;
+}
+
+.compare-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(32, 189, 255, 0.3);
+}
+
+/* Results screen styles */
+.comparison-results {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.comparison-header h2 {
+  font-size: 2.2rem;
+  color: #20bdff;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.viewers-container {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.viewer-column {
+  flex: 1;
+  min-width: 0;
+}
+
+.viewer-column h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Differences section */
+.differences-container {
+  background: rgba(12, 12, 30, 0.8);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  border: 1px solid rgba(32, 189, 255, 0.1);
+}
+
+.differences-container h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #20bdff;
+  text-align: center;
+}
+
+.differences-table {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.differences-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.differences-table th {
+  background: rgba(15, 15, 35, 0.6);
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.differences-table td {
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.differences-table tr.increase td:last-child {
+  color: #4cff9b;
+  font-weight: 600;
+}
+
+.differences-table tr.decrease td:last-child {
+  color: #ff4c4c;
+  font-weight: 600;
+}
+
+.gpt-analyze-button {
+  margin: 1.5rem auto;
+  display: flex;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}
+
+/* Chat section styles */
+.chat-section {
+  margin-top: 3rem;
+  background: rgba(12, 12, 30, 0.8);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(32, 189, 255, 0.1);
+  width: 100%;
+}
+
+.chat-section h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+  color: #20bdff;
+  text-align: center;
+}
+
+.chat-section .chat-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.chat-section .messages-container {
+  flex-grow: 1;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 2rem;
+  background: rgba(15, 15, 35, 0.5);
+}
+
+.chat-section .message {
+  padding: 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 1.2rem;
+  max-width: 95%;
+}
+
+.chat-section .message.user {
+  background: rgba(110, 13, 208, 0.3);
+  margin-left: auto;
+  max-width: 95%;
+}
+
+.chat-section .message.ai {
+  background: rgba(32, 189, 255, 0.1);
+  max-width: 95%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.chat-section .chat-input-container {
+  background: rgba(15, 15, 35, 0.5);
+  padding: 1.2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.chat-section input[type="text"] {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 1.2rem;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.chat-section button {
+  background: linear-gradient(135deg, #6e0dd0, #20bdff);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.chat-section button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(32, 189, 255, 0.3);
+}
+
+/* Improve markdown content in chat */
+.chat-section .markdown-h3 {
+  color: #20bdff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+}
+
+.chat-section .markdown-p {
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.chat-section .markdown-ul,
+.chat-section .markdown-ol {
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.chat-section .markdown-li {
+  margin-bottom: 0.6rem;
+}
+
+.chat-section .markdown-blockquote {
+  border-left: 4px solid #20bdff;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+.chat-section .markdown-code {
+  background: rgba(110, 13, 208, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #20bdff;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 1200px) {
+  .viewers-container {
+    flex-direction: column;
+  }
+  
+  .file-selection {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .file-slot {
+    width: 100%;
+  }
+} 

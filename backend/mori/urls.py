@@ -9,7 +9,8 @@ from .views import (
     AlzheimerPredictionView,
     ProcessingWebhookView,
     MorphometryAnalysisView,
-    MorphometryDataView
+    MorphometryDataView,
+    MorphometryStatusView
 )
 
 urlpatterns = [
@@ -22,4 +23,5 @@ urlpatterns = [
     path('status/<int:scan_id>/', AnalyzeStatusView.as_view(), name='analyze_status'),
     path('results/<int:scan_id>/<str:result_type>/<int:start_slice>', ResultsView.as_view(), name='results'),
     path('mri-scans/<int:scan_id>/', LoadMRI.as_view(), name='get_mri_scan'),
+    path('mri-status/<int:scan_id>/', MorphometryStatusView.as_view(), name='get_mri_scan_full'),
 ] + static('/mri_files/', document_root=settings.MRI_FILES_PATH) 

@@ -7,6 +7,7 @@ import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import Profile from './components/Auth/Profile'
 import Landing from './components/Landing/Landing'
+import FileComparison from './components/FileComparison/FileComparison'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import installFetchInterceptor from './utils/apiInterceptor'
@@ -59,6 +60,13 @@ const AppRoutes = () => {
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <Chat />
+        </ProtectedRoute>
+      } />
+      
+      {/* File comparison route */}
+      <Route path="/compare" element={
+        <ProtectedRoute>
+          <FileComparison />
         </ProtectedRoute>
       } />
       

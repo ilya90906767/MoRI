@@ -4,7 +4,7 @@ import './ImageViewer.css';
 // Base API URL from environment variables
 const API_BASE_URL = `/api`;
 
-const ImageViewer = ({ fileId, onSendToChat }) => {
+const ImageViewer = ({ fileId, onSendToChat, onMorphometryData }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [currentSlice, setCurrentSlice] = useState(30);
@@ -18,6 +18,22 @@ const ImageViewer = ({ fileId, onSendToChat }) => {
   const [dataLoadStatus, setDataLoadStatus] = useState('checking'); // 'checking', 'idle', 'in_progress', 'success', 'error'
   const canvasRef = useRef(null);
   const previousImageDataRef = useRef(null); // Add ref to store previous image data
+
+  // Clear all state when fileId changes
+  useEffect(() => {
+    setData(null);
+    setError(null);
+    setCurrentSlice(30);
+    setIsLoading(false);
+    setTotalSlices(0);
+    setAlzAnalysisInProgress(false);
+    setAlzPrediction(null);
+    setPredictionLoading(false);
+    setMorphometryInProgress(false);
+    setMorphometryData(null);
+    setDataLoadStatus('checking');
+    previousImageDataRef.current = null;
+  }, [fileId]);
 
   const fetchData = async (sliceNumber) => {
     try {
@@ -431,6 +447,13 @@ const ImageViewer = ({ fileId, onSendToChat }) => {
     }
   }, [data, isLoading]);
 
+  // Add notification for when morphometry data is available
+  useEffect(() => {
+    if (morphometryData && onMorphometryData) {
+      onMorphometryData(morphometryData);
+    }
+  }, [morphometryData, onMorphometryData]);
+
   if (error) {
     return <div className="image-viewer-error">Error: {error}</div>;
   }
@@ -487,21 +510,15 @@ const ImageViewer = ({ fileId, onSendToChat }) => {
             </div>
           </div>
           
-          {Object.entries(categories).map(([category, regions]) => {
+          {Object.entries(categories).map(([category, regions], index) => {
             // Only render categories that have regions
             if (regions.length === 0) return null;
             
             return (
-              <div key={category} className="morphometry-category">
+              <div key={category} className="morphometry-category" style={{"--index": index}}>
                 <h5>{category}</h5>
                 <div className="morphometry-table">
                   <table>
-                    <thead>
-                      <tr>
-                        <th>Region</th>
-                        <th>Volume (mm³)</th>
-                      </tr>
-                    </thead>
                     <tbody>
                       {regions.map(([region, value]) => (
                         <tr key={region}>
@@ -548,7 +565,7 @@ const ImageViewer = ({ fileId, onSendToChat }) => {
       return (
         <div className="morphometry-status loading">
           <div className="loading-spinner"></div>
-          <span>Processing morphometry data... (this may take several minutes)</span>
+          <span>Processing morphometry data for {fileId}... (this may take several minutes)</span>
           <div className="status-note">
             This is a computationally intensive process that continues in the background.
             You can leave this page and check back later.

@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from .models import MRIScan
-from .serializers import MRIScanSerializer
+from .serializers import MRIScanDetailSerializer, MRIScanSerializer
 from .nii_pipeline import process_mri_data
 from .alzheimer import predict_alzheimer
 from .morphometry import process_brain_morphometry
@@ -329,6 +329,8 @@ class MorphometryAnalysisView(APIView):
             # Start the brain morphometry analysis
             logger.info(f"Starting brain morphometry analysis for scan ID: {scan_id}")
             try:
+                scan.morphometry_status = "Processing"
+                scan.save()
                 success = process_brain_morphometry(file_path, scan_id)
                 if not success:
                     return Response(
@@ -359,6 +361,25 @@ class MorphometryAnalysisView(APIView):
                 {"error": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+class MorphometryStatusView(APIView):
+    """Endpoint to get a specific MRI scan by ID"""
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, scan_id, *args, **kwargs):
+        try: 
+            user = request.user
+            scan = MRIScan.objects.get(id=scan_id, user=user)
+            serializer = MRIScanDetailSerializer(scan)
+            return Response({
+                "data": serializer.data
+            })
+        except MRIScan.DoesNotExist:
+            return Response(
+                {"error": "MRI scan not found or access denied"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
 
 class ProcessingWebhookView(APIView):
     """Unified webhook endpoint for all processing types"""
@@ -415,6 +436,7 @@ class ProcessingWebhookView(APIView):
                         scan.morphometry_file_path = data.get('morphometry_file_path')
                     if data.get('morphometry_results'):
                         scan.morphometry_results = data.get('morphometry_results')
+                        scan.morphometry_status = "Completed"
             
             # Save the updated scan
             scan.save()
@@ -494,7 +516,7 @@ class MorphometryDataView(APIView):
             # Check if morphometry data exists
             if not scan.morphometry_results:
                 # Check if morphometry is in progress
-                if scan.morphometry_complete is False and scan.morphometry_file_path:
+                if scan.morphometry_complete is False and scan.morphometry_status == "Processing":
                     return Response({
                         "status": "in_progress",
                         "message": "Morphometry analysis is still in progress"

@@ -18,3 +18,16 @@ class MRIScanSerializer(serializers.ModelSerializer):
     
     def get_username(self, obj):
         return obj.user.username if obj.user else None 
+    
+class MRIScanDetailSerializer(MRIScanSerializer):
+    class Meta:
+        model = MRIScan
+        fields = [
+            'id', 'uid', 'username', 'file_name', 'original_file_name', 'organ', 
+            'scan_date', 'file_path', 'created_at', 'updated_at',
+            'processing_complete', 'segmentation_file_path', 
+            'output_file_path', 'alzheimer_prediction', 
+            'prediction_complete', 'morphometry_complete', 
+            'morphometry_file_path', 'morphometry_results',
+            'morphometry_status'
+        ]
