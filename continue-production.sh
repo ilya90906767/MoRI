@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# SSH connection and commands
 sshpass -p "" ssh -o StrictHostKeyChecking=no root << 'EOF'
 
 # Install required tools
@@ -7,8 +9,8 @@ apt-get install -y npm
 npm install pm2 -g
 
 # Clone repository
-git clone git@gitlab.com:mori5235012/website.git
 cd website
+git pull
 
 # Frontend build
 cd frontend
