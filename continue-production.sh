@@ -25,13 +25,13 @@ rm -rf /var/www/html/* # Очистка старого содержимого
 
 # Backend setup
 cd /root/website/backend
-pm2 stop backend
 source /root/website/.venv/bin/activate
-ls -la
 python3.10 -m pip install -r /root/website/requirements.txt
 python3.10 /root/website/backend/manage.py makemigrations
 python3.10 /root/website/backend/manage.py migrate
 python3.10 /root/website/backend/manage.py runserver
+
+gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --daemon
 
 # Start backend with PM2
 # pm2 start backend
