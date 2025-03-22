@@ -1,0 +1,64 @@
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.chat-container {
+  background-color: rgba(42, 42, 42, 0.95);
+  border-radius: var(--border-radius);
+  width: 1000px;
+  min-height: 100px;
+  height: auto;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: min-height 0.3s ease;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chat-container.expanded {
+  min-height: 600px;
+  height: 100%;
+}
+
+.chat-container.dragging::after {
+  content: 'Drop file to upload';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(100, 108, 255, 0.1);
+  border: 2px dashed var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  pointer-events: none;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+}
+
+.viewers-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.viewer-section {
+  flex: 1;
+}
+
+.viewer-section h3 {
+  color: var(--text-color);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  opacity: 0.8;
+}

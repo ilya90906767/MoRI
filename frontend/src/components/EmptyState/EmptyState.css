@@ -1,0 +1,36 @@
+@keyframes textFlicker {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes cursorBlink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 100%;
+}
+
+.typing-text {
+  font-size: 1.8rem;
+  color: #888;
+  animation: textFlicker 3s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.5px;
+}
+
+.cursor {
+  font-weight: 200;
+  color: var(--accent-color);
+  animation: cursorBlink 1s infinite;
+  margin-left: 4px;
+} 

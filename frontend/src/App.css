@@ -1,0 +1,320 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+:root {
+  --bg-color: #1a1a1a;
+  --chat-bg: rgba(42, 42, 42, 0.8);
+  --text-color: #ffffff;
+  --input-bg: rgba(58, 58, 58, 0.9);
+  --accent-color: #646cff;
+  --accent-glow: rgba(100, 108, 255, 0.3);
+  --border-radius: 12px;
+  --primary-gradient: linear-gradient(135deg, #6e0dd0, #20bdff);
+  --primary-color: #6e0dd0;
+  --secondary-color: #20bdff;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes floatingLight {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(2px, 2px);
+  }
+  50% {
+    transform: translate(-2px, -2px);
+  }
+  75% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(-45deg, #1a1a1a, #2d1a3d, #1a2a3d, #1a1a2d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: var(--text-color);
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: padding 0.3s ease;
+}
+
+/* Create highlighted elements */
+.app-container::before,
+.app-container::after {
+  content: '';
+  position: fixed;
+  width: 120vmax;
+  height: 120vmax;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  animation: floatingLight 8s infinite ease-in-out;
+}
+
+.app-container::before {
+  top: -60vmax;
+  left: -60vmax;
+  opacity: 0.4;
+}
+
+.app-container::after {
+  bottom: -60vmax;
+  right: -60vmax;
+  opacity: 0.3;
+}
+
+/* Add floating elements */
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-elements::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, var(--accent-glow) 0%, transparent 20%),
+    radial-gradient(circle at 80% 80%, rgba(144, 137, 252, 0.3) 0%, transparent 20%),
+    radial-gradient(circle at 50% 50%, rgba(100, 108, 255, 0.1) 0%, transparent 50%);
+  filter: blur(4px);
+  opacity: 0.5;
+  animation: floatingLight 12s infinite ease-in-out alternate;
+}
+
+/* Grid overlay */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, var(--accent-color), #9089fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.chat-container {
+  background-color: var(--chat-bg);
+  border-radius: var(--border-radius);
+  width: 90%;
+  min-height: 400px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.chat-container.expanded {
+  min-height: 600px;
+}
+
+.messages-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.message {
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: var(--border-radius);
+  max-width: 80%;
+}
+
+.message.user {
+  background-color: var(--accent-color);
+  margin-left: auto;
+}
+
+.input-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--input-bg);
+  border-radius: var(--border-radius);
+}
+
+.chat-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  padding: 0.8rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.chat-input::placeholder {
+  color: #888;
+}
+
+.send-button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: #7175ff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--chat-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7175ff;
+}
+
+/* Fullscreen auth pages style */
+.app-container.fullscreen {
+  max-width: 100%;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Reset root element constraints for fullscreen mode */
+.app-container.fullscreen {
+  padding: 0 !important;
+}
+
+#root:has(.app-container.fullscreen) {
+  max-width: 100% !important;
+  width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100vh !important;
+}
+
+/* Override body constraints for fullscreen mode */
+body:has(.app-container.fullscreen) {
+  overflow: hidden;
+}
+
+/* Additional adjustments for landing page */
+#root:has(.landing-container) {
+  max-width: 100% !important;
+  width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+}
+
+.app-container.fullscreen .landing-container {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+}

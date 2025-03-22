@@ -1,0 +1,25 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#2563EB" />
+  
+  <!-- Main notebook/journal icon -->
+  <rect x="60" y="50" width="80" height="100" rx="4" ry="4" fill="white" />
+  
+  <!-- Journal spiral binding -->
+  <path d="M60 60 Q70 70, 60 80 Q70 90, 60 100 Q70 110, 60 120 Q70 130, 60 140" stroke="#94A3B8" stroke-width="3" fill="none" />
+  
+  <!-- Journal lines -->
+  <line x1="75" y1="70" x2="130" y2="70" stroke="#94A3B8" stroke-width="2" />
+  <line x1="75" y1="90" x2="130" y2="90" stroke="#94A3B8" stroke-width="2" />
+  <line x1="75" y1="110" x2="130" y2="110" stroke="#94A3B8" stroke-width="2" />
+  <line x1="75" y1="130" x2="130" y2="130" stroke="#94A3B8" stroke-width="2" />
+  
+  <!-- Lab icon - flask -->
+  <path d="M115 65 L125 90 L125 110 Q125 120, 115 120 L105 120 Q95 120, 95 110 L95 90 L105 65 Z" fill="#10B981" stroke="white" stroke-width="2" />
+  
+  <!-- Flask liquid -->
+  <path d="M95 100 L125 100 L120 115 Q115 118, 110 118 L100 118 Q95 118, 95 115 Z" fill="#34D399" />
+  
+  <!-- Lab flask top -->
+  <rect x="105" y="60" width="10" height="5" fill="#10B981" />
+</svg> 

@@ -1,0 +1,138 @@
+.file-panel {
+  background-color: rgba(42, 42, 42, 0.95);
+  border-radius: var(--border-radius);
+  width: 1000px;
+  padding: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  height: fit-content;
+}
+
+.file-panel h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.file-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  min-width: 250px;
+  flex: 1;
+  max-width: 300px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.file-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.file-item.active {
+  border-color: var(--accent-color);
+  background-color: rgba(100, 108, 255, 0.1);
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-name {
+  color: var(--text-color);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.file-details {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  flex-wrap: wrap;
+}
+
+.file-date, .file-organ, .file-status {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.file-status {
+  font-weight: 500;
+}
+
+.file-status.success {
+  background-color: rgba(46, 160, 67, 0.2);
+  color: #2ea043;
+}
+
+.file-status.processing {
+  background-color: rgba(100, 108, 255, 0.1);
+  color: var(--accent-color);
+  animation: pulse 2s infinite;
+}
+
+.process-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.process-button:hover {
+  background-color: rgba(100, 108, 255, 0.8);
+}
+
+.file-size {
+  color: var(--text-color);
+  opacity: 0.6;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.no-files-message {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.6;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+} 

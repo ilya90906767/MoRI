@@ -1,0 +1,80 @@
+.chat-input-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  margin: 1rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input[type="text"].awaiting-input {
+  background: rgba(100, 108, 255, 0.1);
+  border: 1px solid rgba(100, 108, 255, 0.3);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input[type="text"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  background: rgba(100, 108, 255, 0.3);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.confirm-button {
+  background: rgba(100, 255, 108, 0.3);
+}
+
+button.confirm-button:hover:not(:disabled) {
+  background: rgba(100, 255, 108, 0.5);
+}
+
+button:hover:not(:disabled) {
+  background: rgba(100, 108, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upload-button {
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.upload-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.upload-button svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+} 
