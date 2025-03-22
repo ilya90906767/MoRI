@@ -1,14 +1,15 @@
 module.exports = {
     apps: [
       {
-        name: 'backend', // Name of your application
-        script: 'manage.py',   // Entry point of your application
-        args: 'runserver',     // Command to run the Django development server
-        interpreter: '/root/website/.venv/bin/python3.10', // Path to the Python interpreter in your venv
+        name: 'backend', // Название приложения
+        script: 'manage.py', // Точка входа (manage.py)
+        args: 'runserver', // Аргументы для запуска сервера
+        interpreter: '/root/website/.venv/bin/python3.10', // Путь к Python в виртуальном окружении
         env: {
-          DJANGO_SETTINGS_MODULE: 'backend.settings', // Your Django settings module
-          PYTHONPATH: '.',          // Path to your Django project
+          DJANGO_SETTINGS_MODULE: 'backend.settings', // Модуль настроек Django
+          PYTHONPATH: '/root/website/backend', // Путь к проекту Django
         },
+        cwd: '/root/website/backend', // Рабочая директория
       },
     ],
   };
