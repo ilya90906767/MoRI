@@ -3,21 +3,28 @@ sshpass -p "" ssh -o StrictHostKeyChecking=no root << 'EOF'
 
 # Install required tools
 apt-get update
-apt-get install -y npm
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
 npm install pm2 -g
+npm install -g yarn
 
-# Clone repository
-git clone git@gitlab.com:mori5235012/website.git
-cd website
+# Install vite locally in the project
+rm -rf /root/website
+git clone git@gitlab.com:mori5235012/website.git /root/website
+cd /root/website
 
-# Frontend build
-cd frontend
-yarn 
+# Установка зависимостей для фронтенда
+cd /root/website/frontend
+rm -rf node_modules yarn.lock package-lock.json # Очистка старых зависимостей
+yarn install --frozen-lockfile # Установка зависимостей из yarn.lock
+
+# Сборка фронтенда
 yarn build
 
-# Deploy frontend
-rm -rf /var/www/html/*
-cp -r dist/* /var/www/html/
+# Деплой фронтенда
+mkdir -p /var/www/html # Создание директории, если её нет
+rm -rf /var/www/html/* # Очистка старого содержимого
+[ -d "dist" ] && cp -r dist/* /var/www/html/ # Копирование собранных файлов
 
 # Backend setup
 cd ..
