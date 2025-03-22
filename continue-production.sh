@@ -31,8 +31,9 @@ ls -la
 python3.10 -m pip install -r /root/website/requirements.txt
 python3.10 /root/website/backend/manage.py makemigrations
 python3.10 /root/website/backend/manage.py migrate
+python3.10 /root/website/backend/manage.py runserver
 
 # Start backend with PM2
-pm2 start backend
+# pm2 start backend
 
 EOF
