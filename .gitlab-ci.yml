@@ -1,0 +1,103 @@
+image: python:3.11-slim
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
+cache:
+  paths:
+    - .pip-cache/
+    - frontend/node_modules/
+    - frontend/.yarn-cache/
+
+stages:
+  - test
+  - build
+  - deploy
+
+# Backend testing stage
+backend-test:
+  stage: test
+  script:
+    - python -V
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - pip install pytest pytest-django
+    - cd backend
+    - python manage.py test mori users
+  only:
+    - merge_requests
+    - main
+
+# Frontend testing stage
+frontend-test:
+  stage: test
+  image: node:18
+  script:
+    - cd frontend
+    - yarn install --frozen-lockfile
+    - yarn lint
+    - yarn test
+  only:
+    - merge_requests
+    - main
+
+# Backend build stage
+backend-build:
+  stage: build
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - cd backend
+    - python manage.py collectstatic --noinput
+  artifacts:
+    paths:
+      - backend/static/
+    expire_in: 1 week
+  only:
+    - main
+
+# Frontend build stage
+frontend-build:
+  stage: build
+  image: node:18
+  script:
+    - cd frontend
+    - yarn install --frozen-lockfile
+    - yarn build
+  artifacts:
+    paths:
+      - frontend/dist/
+    expire_in: 1 week
+  only:
+    - main
+
+# Deploy stage
+deploy:
+  stage: deploy
+  script:
+    - cd $SERVER_PATH
+    - git pull origin main
+    - pip install -r requirements.txt
+    - cd backend
+    - python manage.py migrate
+    - python manage.py collectstatic --noinput
+    - cd ../frontend
+    - yarn install
+    - yarn build
+    - cd ..
+    - systemctl restart gunicorn
+    - systemctl restart nginx
+  only:
+    - main
+  environment:
+    name: production
+    url: https://$DOMAIN
+
+# Cache cleanup
+cache-cleanup:
+  stage: .post
+  script:
+    - rm -rf .pip-cache/
+    - rm -rf frontend/node_modules/
+    - rm -rf frontend/.yarn-cache/
+  when: always 
