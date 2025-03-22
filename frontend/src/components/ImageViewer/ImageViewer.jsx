@@ -605,7 +605,7 @@ const ImageViewer = ({ fileId, onSendToChat }) => {
           <input
             type="range"
             min="0"
-            max={totalSlices}
+            max={totalSlices-1}
             value={currentSlice}
             onChange={(e) => {
               const newSlice = Number(e.target.value);
@@ -639,7 +639,7 @@ const ImageViewer = ({ fileId, onSendToChat }) => {
       
       <div className="canvas-container">
         <canvas ref={canvasRef} />
-        {isLoading && <div className="loading-overlay">Loading...</div>}
+        {isLoading}
       </div>
       
       {/* Morphometry section with enhanced rendering */}
