@@ -43,7 +43,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_HOSTS')
+CSRF_TRUSTED_ORIGINS = ['https://nanoscript-land.ru','https://*.127.0.0.1'] #Need to add from .env
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))

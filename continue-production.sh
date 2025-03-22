@@ -31,6 +31,7 @@ python3.10 /root/website/backend/manage.py makemigrations
 python3.10 /root/website/backend/manage.py migrate
 python3.10 /root/website/backend/manage.py runserver
 
+pkill gunicorn
 gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --daemon
 
 # Start backend with PM2
