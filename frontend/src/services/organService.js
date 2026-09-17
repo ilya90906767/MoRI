@@ -1,8 +1,6 @@
-const API_URL = `/api`;
-const MRI_FILES_PATH = import.meta.env.VITE_MRI_FILES_PATH || '/Users/ilabetaev/labjourn/WebApp/backend/mri_files';
-
-import NPY from 'npyjs';
 import npyjs from 'npyjs';
+
+const API_URL = `/api`;
 
 // Generate a unique ID for each file
 const generateUID = () => {

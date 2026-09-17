@@ -21,7 +21,7 @@ class MRIScan(models.Model):
     segmentation_file_path = models.CharField(max_length=500, null=True, blank=True)
     output_file_path = models.CharField(max_length=500, null=True, blank=True)
 
-    # Alzheimer's prediction related fields
+    # AGE's prediction related fields
     alzheimer_prediction = models.CharField(max_length=100, null=True, blank=True)
     prediction_complete = models.BooleanField(default=False)
     

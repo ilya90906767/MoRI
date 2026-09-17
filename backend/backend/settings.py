@@ -15,16 +15,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
 
-# Load environment variables from .env file
-# IMPORTANT: This must happen before any settings are accessed
 env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
 load_dotenv(env_path)
 
-# Debug: Print environment variables
-print(f"Loading .env from: {env_path}")
-print(f"SECRET_KEY loaded: {os.getenv('SECRET_KEY') is not None}")
-print(f"DEBUG env: {os.getenv('DEBUG')}")
-print(f"HOST env: {os.getenv('HOST')}")
 HOST = os.getenv('HOST')
 PORT = os.getenv('PORT')
 

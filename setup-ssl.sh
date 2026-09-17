@@ -1,20 +1,8 @@
 #!/bin/bash
-# ========================================================================
-# SSL Certificate Setup Script using Let's Encrypt
-# ========================================================================
-# This script helps you generate and install SSL certificates for your domain
-# using Let's Encrypt's certbot
-# 
-# Usage: 
-#   ./setup-ssl.sh yourdomain.com [www.yourdomain.com]
-#
-# Requirements:
-#   - Root or sudo access
-#   - Domain with DNS pointing to your server
-#   - Web server (Nginx or Apache) installed
-# ========================================================================
+# Let's Encrypt cert for nginx/apache.
+# Usage: ./setup-ssl.sh yourdomain.com [www.yourdomain.com]
 
-set -e  # Exit immediately if a command exits with a non-zero status
+set -e
 
 # Text colors
 RED='\033[0;31m'

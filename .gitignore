@@ -21,17 +21,24 @@ wheels/
 *.egg
 MANIFEST
 venv/
+.venv/
+env/
 
-.env.local
-.env.*.local
+# Secrets / local config
+.env
+*.env
+!.env.example
+backend/.env
 
 # Django
 *.log
+debug.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media/
 static/
+staticfiles/
 
 # Node
 node_modules/
@@ -39,21 +46,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-# Build outputs
-dist/
-build/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-
-# IDE
+# IDE / OS
 .idea/
 .vscode/
 *.swp
@@ -61,16 +55,34 @@ build/
 .DS_Store
 Thumbs.db
 
-# Project specific
+# MRI / medical data
 mri_files/
-debug.log
-*.nii.gz
 *.nii
+*.nii.gz
 *.dcm
-*.jpg
-*.jpeg
-*.png
-*.pdf
+
+# Model weights (too large for git)
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.safetensors
+*.bin
+backend/SynthBA/checkpoints/*.pth
+backend/SynthBA/checkpoints/**/*.pth
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
 
 # Testing
 .coverage
@@ -81,10 +93,3 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
-
-# Misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local 
